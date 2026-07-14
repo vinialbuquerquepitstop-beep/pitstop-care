@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PitStop Care · Pitstop Imports</title>
+<meta name="description" content="Bem-vindo ao PitStop Care. Seu Apple tem procedência, garantia e um canal direto com a Pitstop.">
+<meta name="theme-color" content="#06112A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+/* ==========================================================================
+   PITSTOP CARE — PAINEL DE EDIÇÃO
+   Tudo que muda com o tempo está AQUI. Não é preciso mexer no resto do arquivo.
+   Editou, salvou, publicou: o QR Code continua o mesmo para sempre.
+   ========================================================================== */
+const CONFIG = {
+
+  whatsapp: "5521991205744",          // só números
+  instagram: "PITSTOPIMPORTS",
+
+  hero: {
+    eyebrow: "PROGRAMA DE PÓS-VENDA",
+    titulo: "Bem-vindo ao PitStop Care.",
+    texto: "A entrega não é o fim da compra. É o começo do relacionamento. Aqui está tudo o que passa a valer a partir de agora."
+  },
+
+  // Blocos de benefício. Para adicionar um novo, copie um bloco inteiro
+  // { rotulo, titulo, texto } e cole na lista. Para tirar, apague o bloco.
+  beneficios: [
+    {
+      rotulo: "SUPORTE",
+      titulo: "Canal direto, sem robô",
+      texto: "Dúvida de configuração, iCloud, backup ou bateria: você fala com quem te vendeu, pelo mesmo WhatsApp de sempre."
+    },
+    {
+      rotulo: "PROCEDÊNCIA",
+      titulo: "Nota fiscal em nome do dono",
+      texto: "Todo aparelho sai com nota. É o que garante a origem do produto e sustenta qualquer acionamento de garantia."
+    },
+    {
+      rotulo: "ENTREGA",
+      titulo: "Rio de Janeiro, na mão",
+      texto: "Entrega presencial, conferência do aparelho junto com você antes de qualquer pagamento ser finalizado."
+    },
+    {
+      rotulo: "PRIORIDADE",
+      titulo: "Fila de quem já é cliente",
+      texto: "Chegou um modelo novo no estoque? Quem já comprou aqui é avisado antes de qualquer anúncio."
+    }
+    /* ---- BLOCO RESERVADO ----------------------------------------------
+       Quando a recompensa do programa de indicação estiver definida,
+       cole o bloco abaixo (tire os símbolos de comentário) e preencha:
+
+    ,{
+      rotulo: "INDICAÇÃO",
+      titulo: "PREENCHER",
+      texto: "PREENCHER"
+    }
+    -------------------------------------------------------------------- */
+  ],
+
+  // Primeiros passos com o aparelho. Ordem importa: são etapas.
+  passos: [
+    { titulo: "Confira o IMEI", texto: "Disque *#06# e confira se o número bate com o da sua nota fiscal. Guarde a nota." },
+    { titulo: "Entre na sua conta Apple", texto: "Configure o iCloud com o seu ID. O aparelho já chega sem nenhum vínculo com dono anterior." },
+    { titulo: "Ative o Buscar", texto: "Ajustes › seu nome › Buscar. É o que protege o aparelho em caso de perda ou roubo." },
+    { titulo: "Deixe a bateria em paz", texto: "Carregue quando precisar. O vilão real é o calor: nada de sol direto ou carregar sob o travesseiro." }
+  ],
+
+  garantia: {
+    // O texto abaixo muda sozinho conforme o link do QR Code:
+    // ...pitstopcare.html?p=seminovo  → mostra 3 meses
+    // ...pitstopcare.html?p=lacrado   → mostra 1 ano
+    // sem parâmetro nenhum            → mostra as duas regras
+    seminovo: { prazo: "3 meses", desc: "Garantia Pitstop para aparelhos seminovos, contada a partir da data da nota fiscal." },
+    lacrado:  { prazo: "1 ano",   desc: "Garantia para aparelhos lacrados. MacBook e iPad são sempre lacrados, sempre 1 ano." }
+  },
+
+  cta: {
+    titulo: "Ficou com dúvida?",
+    texto: "Chama no WhatsApp. Você fala com a gente, não com um formulário.",
+    botao: "Falar com a Pitstop"
+  }
+};
+</script>
+
+<style>
+:root{
+  --azul-fundo:#06112A;
+  --azul-meio:#0F2E64;
+  --glow:#1D71F0;
+  --branco:#FFFFFF;
+  --sobre-branco:#0A1C40;
+  --azul-legenda:#2854A0;
+  --azul-gelo:#96BAFF;
+  --verde:#21BF7A;
+  --sombra:0 2px 18px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--azul-fundo);
+  color:var(--branco);
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+  position:relative;
+  overflow-x:hidden;
+}
+/* atmosfera: grid técnico + glow */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(150,186,255,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(150,186,255,.05) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(90vw 70vh at 50% -10%, rgba(29,113,240,.42), transparent 65%),
+             linear-gradient(180deg, rgba(15,46,100,.55), rgba(6,17,42,1) 55%);
+}
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 28px 72px}
+
+/* ---- TOPO ---- */
+header{padding:44px 0 0;text-align:center}
+.logo{width:190px;height:auto;display:inline-block}
+.filete{height:1px;background:linear-gradient(90deg,transparent,rgba(150,186,255,.55),transparent);margin:26px 0 0}
+
+/* ---- TIPOGRAFIA ---- */
+.eyebrow{
+  font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--azul-gelo);
+}
+h1{
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+  font-size:clamp(34px,8.4vw,50px);line-height:1.03;letter-spacing:-.02em;
+  text-shadow:var(--sombra);margin:16px 0 18px;
+}
+h2{
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+  font-size:clamp(22px,5.2vw,28px);line-height:1.12;letter-spacing:-.015em;
+  text-shadow:var(--sombra);
+}
+.lead{font-size:17px;color:rgba(255,255,255,.78);max-width:46ch;margin:0 auto}
+section{padding:64px 0 0}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:26px}
+.sec-head .num{font-family:"Geist Mono",monospace;font-size:12px;color:var(--glow)}
+
+/* ---- SIGNATURE: selo de garantia ---- */
+.selo{
+  margin:34px auto 0;border:1px solid rgba(150,186,255,.28);border-radius:14px;
+  background:rgba(6,17,42,.55);backdrop-filter:blur(6px);
+  padding:22px;display:flex;align-items:center;gap:18px;text-align:left;
+}
+.selo .check{
+  flex:0 0 42px;height:42px;border-radius:50%;border:1.5px solid var(--verde);
+  display:grid;place-items:center;color:var(--verde);font-size:19px;
+  box-shadow:0 0 0 6px rgba(33,191,122,.08);
+}
+.selo .prazo{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px}
+.selo .desc{font-size:13.5px;color:rgba(255,255,255,.7);margin-top:3px}
+
+/* ---- CARTÕES ---- */
+.cards{display:grid;gap:14px}
+.card{
+  background:var(--branco);color:var(--sobre-branco);border-radius:16px;padding:22px 22px 20px;
+  box-shadow:0 14px 34px rgba(0,0,0,.28);
+  opacity:0;transform:translateY(14px);
+  transition:opacity .6s ease,transform .6s ease;
+}
+.card.on{opacity:1;transform:none}
+.card .rot{font-family:"Geist Mono",monospace;font-size:10.5px;letter-spacing:.2em;color:var(--azul-legenda)}
+.card h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:19px;margin:8px 0 6px;letter-spacing:-.01em}
+.card p{font-size:14.5px;color:#41527A;line-height:1.55}
+
+/* ---- PASSOS ---- */
+.passos{list-style:none;border-left:1px solid rgba(150,186,255,.22);padding-left:22px;display:grid;gap:22px}
+.passo{position:relative}
+.passo::before{
+  content:attr(data-n);position:absolute;left:-33px;top:2px;width:22px;height:22px;
+  border-radius:50%;background:var(--azul-fundo);border:1px solid rgba(150,186,255,.4);
+  font-family:"Geist Mono",monospace;font-size:10px;display:grid;place-items:center;color:var(--azul-gelo);
+}
+.passo strong{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16.5px;display:block;margin-bottom:2px}
+.passo span{font-size:14.5px;color:rgba(255,255,255,.68)}
+
+/* ---- CTA ---- */
+.cta{margin-top:64px;text-align:center;border-top:1px solid rgba(150,186,255,.18);padding-top:48px}
+.cta p{color:rgba(255,255,255,.72);margin:10px auto 24px;max-width:34ch}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--branco);color:var(--sobre-branco);
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16px;
+  padding:16px 30px;border-radius:999px;text-decoration:none;
+  box-shadow:0 12px 30px rgba(29,113,240,.3);transition:transform .18s ease;
+}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px)}
+
+/* ---- RODAPÉ ---- */
+footer{margin-top:56px;text-align:center;font-size:13px;color:rgba(255,255,255,.55)}
+.slogan{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;color:var(--branco);margin-bottom:10px}
+footer a{color:var(--azul-gelo);text-decoration:none}
+
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--azul-gelo);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.card{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <!-- Troque o src pelo arquivo do logo branco (PNG). Deixe na mesma pasta do HTML. -->
+    <img class="logo" src="logo-pitstop-branco.png" alt="Pitstop Imports"
+         onerror="this.outerHTML='<div style=&quot;font-family:Bricolage Grotesque;font-weight:800;font-size:26px;letter-spacing:.04em&quot;>PITSTOP <span style=&quot;font-weight:400&quot;>imports</span></div>'">
+    <div class="filete"></div>
+  </header>
+
+  <section style="padding-top:46px;text-align:center">
+    <div class="eyebrow" id="hero-eyebrow"></div>
+    <h1 id="hero-titulo"></h1>
+    <p class="lead" id="hero-texto"></p>
+    <div class="selo" id="selo"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="num">01</span><h2>O que o Care te dá</h2></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="num">02</span><h2>Primeiros passos</h2></div>
+    <ol class="passos" id="passos"></ol>
+  </section>
+
+  <div class="cta">
+    <h2 id="cta-titulo"></h2>
+    <p id="cta-texto"></p>
+    <a class="btn" id="cta-btn" href="#" target="_blank" rel="noopener"></a>
+  </div>
+
+  <footer>
+    <div class="slogan">Pediu? Chegou!</div>
+    <div id="rodape"></div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const C = CONFIG, $ = id => document.getElementById(id);
+
+  $("hero-eyebrow").textContent = C.hero.eyebrow;
+  $("hero-titulo").textContent  = C.hero.titulo;
+  $("hero-texto").textContent   = C.hero.texto;
+
+  // Garantia dinâmica por parâmetro ?p=seminovo | ?p=lacrado
+  const p = new URLSearchParams(location.search).get("p");
+  const g = C.garantia;
+  const linha = (prazo, desc) =>
+    `<div class="check">✓</div><div><div class="prazo">${prazo} de garantia</div><div class="desc">${desc}</div></div>`;
+  $("selo").innerHTML = p === "lacrado"  ? linha(g.lacrado.prazo,  g.lacrado.desc)
+                      : p === "seminovo" ? linha(g.seminovo.prazo, g.seminovo.desc)
+                      : `<div class="check">✓</div><div>
+                           <div class="prazo">Garantia Pitstop</div>
+                           <div class="desc">Seminovo: ${g.seminovo.prazo}. Lacrado: ${g.lacrado.prazo}. MacBook e iPad são sempre lacrados, sempre ${g.lacrado.prazo}. Sempre com nota fiscal.</div>
+                         </div>`;
+
+  $("cards").innerHTML = C.beneficios.map(b =>
+    `<article class="card"><div class="rot">${b.rotulo}</div><h3>${b.titulo}</h3><p>${b.texto}</p></article>`).join("");
+
+  $("passos").innerHTML = C.passos.map((s,i) =>
+    `<li class="passo" data-n="${i+1}"><strong>${s.titulo}</strong><span>${s.texto}</span></li>`).join("");
+
+  $("cta-titulo").textContent = C.cta.titulo;
+  $("cta-texto").textContent  = C.cta.texto;
+  const btn = $("cta-btn");
+  btn.textContent = C.cta.botao;
+  btn.href = "https://wa.me/" + C.whatsapp;
+
+  $("rodape").innerHTML =
+    `<a href="https://instagram.com/${C.instagram}" target="_blank" rel="noopener">@${C.instagram}</a> · (21) 99120-5744<br>Entrega presencial no Rio de Janeiro · Nota fiscal em todo aparelho`;
+
+  // reveal dos cartões
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add("on")), {threshold:.2});
+  document.querySelectorAll(".card").forEach((c,i) => { c.style.transitionDelay = (i*70)+"ms"; io.observe(c); });
+})();
+</script>
+</body>
+</html>
